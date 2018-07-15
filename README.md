@@ -1,5 +1,3 @@
 ## HOW TO USE
-cd installation
-bash install.sh -h
-
+cd installation && bash install.sh -h
 
