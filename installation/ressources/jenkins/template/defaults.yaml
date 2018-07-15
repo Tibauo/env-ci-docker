@@ -1,0 +1,19 @@
+- defaults:
+    name: global
+    description: |
+        https://docs.openstack.org/infra/jenkins-job-builder/
+    project-type: freestyle
+    concurrent: false
+    block-downstream: true
+    block-upstream: true
+    wrappers:
+      - timestamps
+      - ansicolor
+      - workspace-cleanup
+      - mask-passwords
+    logrotate:
+      daysToKeep: 1
+      numToKeep: 2
+      artifactDaysToKeep: -1
+      artifactNumToKeep: -1
+    email: demo@demo.com

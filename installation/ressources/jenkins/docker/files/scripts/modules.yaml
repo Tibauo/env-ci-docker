@@ -1,0 +1,9 @@
+- project:
+   name: modules
+   type: modules
+   module:
+# Please add modules in config.yaml.inc
+     !include: config.yaml.inc
+   jobs:
+    - 'test-{module}'
+    - 'package-{module}'

@@ -1,0 +1,13 @@
+- builder:
+    name: run-tests-modules
+    builders:
+      - shell:
+          !include-raw:
+             - scripts/test.sh
+
+- builder:
+    name: package-modules
+    builders:
+      - shell:
+          !include-raw:
+             - scripts/package.sh

@@ -1,0 +1,46 @@
+- job-template:
+    name: 'test-{module}'
+    publishers:
+      - merge-master
+      - trigger:
+         project: 'package-{module}'
+         threshold: SUCCESS
+    scm:
+      - git:
+         url: "http://10.5.0.10/demo/{module}.git"
+         credentials-id: demo
+         branches:
+          - :origin/.*
+         wipe-workspace: true
+         skip-tag: true
+         force-polling-using-workspace: true
+         merge:
+            remote: origin
+            branch: master
+            strategy: default
+            fast-forward-mode: FF
+    triggers:
+      - pollscm:
+          cron: "H/5 * * * *"
+    builders:
+      - run-tests-modules
+
+- job-template:
+    name: 'package-{module}'
+    wrappers:
+      - credentials-binding:
+        - username-password-separated:
+            credential-id: demo
+            username: REPOSITORY_USERNAME
+            password: REPOSITORY_PASSWORD
+    scm:
+      - git:
+         url: "http://10.5.0.10/demo/{module}.git"
+         credentials-id: demo
+         branches:
+          - origin/master
+         wipe-workspace: true
+         skip-tag: true
+
+    builders:
+      - package-modules

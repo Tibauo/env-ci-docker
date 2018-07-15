@@ -1,0 +1,14 @@
+ - job:
+    parameters:
+      - string:
+          name: repository
+          default: "monrepository"
+          description: "nomdurepository"
+    name: ci
+    project-type: freestyle
+    description: 'CI'
+    builders:
+        - shell: |
+            echo 'config.yaml'
+            cat /root/jenkins-job-builder/scripts/config.yaml.inc
+            if [ ! -z $(grep -i $repository /root/jenkins-job-builder/scripts/config.yaml.inc  | awk '{print $2}') ]; then echo "rien a faire"; else echo "- $repository" >> /root/jenkins-job-builder/scripts/config.yaml.inc; bash /jjb.sh; fi
