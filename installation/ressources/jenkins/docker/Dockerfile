@@ -1,4 +1,4 @@
-FROM jenkins
+FROM jenkins/jenkins
 USER root
 ENV JAVA_OPTS="-Djenkins.install.runSetupWizard=false"
 COPY files/security.groovy /usr/share/jenkins/ref/init.groovy.d/security.groovy

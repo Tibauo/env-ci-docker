@@ -12,7 +12,7 @@ until $(curl --output /dev/null --silent --head --fail http://localhost:8080); d
 tmp=`sed "s/\"id\": \"\"/\"id\": \"$USER\"/g" $DIR/installation/ressources/jenkins/password.json | sed "s/\"username\": \"\"/\"username\": \"$USER\"/g"  | sed "s/\"password\": \"\"/\"password\": \"$PASSWORD\"/g"`
 
 curl -X POST 'http://localhost:8080/credentials/store/system/domain/_/createCredentials' --data-urlencode "$tmp"
-docker exec -t ci_jenkins_1 /bin/bash -c "bash /jjb.sh"
-docker exec -t ci_jenkins_1 /bin/bash -c "cd /root/jenkins-job-builder/ && jenkins-jobs --conf jjb.ini update ci.yaml"
+docker exec -t ci_jenkins /bin/bash -c "bash /jjb.sh"
+docker exec -t ci_jenkins /bin/bash -c "cd /root/jenkins-job-builder/ && jenkins-jobs --conf jjb.ini update ci.yaml"
 
 }

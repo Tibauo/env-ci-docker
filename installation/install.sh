@@ -117,3 +117,11 @@ cd $DIR/installation
 postConfigureGitlab
 postConfigureNexus
 postConfigureJenkins
+cd $DIR/installation/ressources/projet
+git config --global user.name "Tibauo"
+git config --global user.email "demo@monmail.fr"
+git init
+git remote add origin http://$USER:$PASSWORD@localhost/Tibauo/demo.git
+git add .
+git commit -m "Initial commit"
+git push -u origin master

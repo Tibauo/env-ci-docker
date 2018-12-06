@@ -5,6 +5,7 @@ version: '3'
 # define services
 services:
   gitlab:
+    container_name: ci_gitlab
     image: gitlab/gitlab-ce
     hostname: gitlab
     environment:
@@ -19,6 +20,7 @@ services:
       net:
         ipv4_address: 10.5.0.10
   jenkins:
+    container_name: ci_jenkins
     image: jenkins-demo
     hostname: jenkins
     ports:
@@ -31,6 +33,7 @@ services:
       net:
         ipv4_address: 10.5.0.20
   nexus:
+    container_name: ci_nexus
     image: sonatype/nexus3
     hostname: nexus
     ports:

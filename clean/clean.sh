@@ -14,3 +14,4 @@ docker volume prune -f
 docker network prune -f
 docker rm $(docker ps -a -q) -f
 docker rmi $(docker images -a -q) -f
+rm -rf $DIR/installation/ressources/projet/.git
